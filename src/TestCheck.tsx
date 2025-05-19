@@ -15,9 +15,7 @@ const TestCheck: React.FC<TestCheckProps> = ({ coords, setRegime, assets }) => {
   const [asset, setAsset] = useState(0);
   const gesture = assets[asset].coordinates;
   const gestureIndexes = assets[asset].landMarkIndexes;
-  console.log(gesture);
 
-  console.log(coords);
   if (assets[asset].title == "Я") {
     setRegime("");
   }
