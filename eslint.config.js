@@ -1,14 +1,14 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
+import js from "@eslint/js";
 import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
+import react from "eslint-plugin-react";
+import globals from "globals";
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+/** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
   {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    files: ["**/*.{js,ts,jsx,tsx}"],
     languageOptions: {
-      globals: globals.browser,
+      parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
@@ -16,21 +16,20 @@ export default [
           jsx: true,
         },
       },
-    },
-  },
-
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    ...pluginReact.configs.flat.recommended,
-    rules: {
-      ...pluginReact.configs.flat.recommended.rules,
-      "react/react-in-jsx-scope": "off",
-    },
-    settings: {
-      react: {
-        version: "detect",
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
       },
+    },
+    plugins: {
+      react,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...tseslint.configs.recommended[0].rules,
+      ...tseslint.configs.recommended[1].rules,
+      ...react.configs.recommended.rules,
+      "react/react-in-jsx-scope": "off", // ✅ отключаем требование React в JSX
     },
   },
 ];
