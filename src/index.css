@@ -66,7 +66,7 @@ button:focus-visible {
 }
 
 .btn {
-  width: 23vw;
+  width: 18vw;
   height: 6vh;
   background-color: #4c465c;
   border-radius: 10px;
@@ -150,6 +150,6 @@ p {
   padding: 7px;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 1px;
-  font-size: 1.1em;
+  font-size: 1.7em;
 }
 
