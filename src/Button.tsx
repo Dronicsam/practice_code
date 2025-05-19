@@ -1,10 +1,9 @@
-
-const Button = ({props}: {props: string}) => {
+const Button = ({ props }: { props: string }) => {
   return (
     <div className="btn">
-        <p>{props}</p>
+      <p>{props}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
