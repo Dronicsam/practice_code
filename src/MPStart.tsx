@@ -1,17 +1,13 @@
 import { useRef, useEffect, useState } from "react";
 import "./App.css";
 import Webcam from "react-webcam";
-import {
-  Holistic,
-  POSE_LANDMARKS,
-  HAND_CONNECTIONS,
-  POSE_CONNECTIONS,
-} from "@mediapipe/holistic";
+import { Holistic, HAND_CONNECTIONS } from "@mediapipe/holistic";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { Camera } from "@mediapipe/camera_utils";
 import Button from "./Button";
 import AssetCheck from "./AssetCheck";
 import TestCheck from "./TestCheck";
+
 type Coordinate = {
   x: number;
   y: number;
@@ -26,7 +22,7 @@ const MPStart: React.FC<MyComponentProps> = ({ assets }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const leftHandCoords = useRef<Coordinate[]>([]);
   const rightHandCoords = useRef<Coordinate[]>([]);
-  const [leftWorking, setLeftWorking] = useState<Coordinate[]>([]);
+  // Удалил leftWorking, так как он не используется
   const [rightWorking, setRightWorking] = useState<Coordinate[]>([]);
   const [regime, setRegime] = useState("");
   let regimeRightNow = "";
@@ -88,8 +84,6 @@ const MPStart: React.FC<MyComponentProps> = ({ assets }) => {
     const leftHandLandmarks = results.leftHandLandmarks;
     const rightHandLandmarks = results.rightHandLandmarks;
     if (results.poseLandmarks) {
-      // Drawing hand landmarks
-
       drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {
         color: "white",
         lineWidth: 2,
@@ -116,7 +110,6 @@ const MPStart: React.FC<MyComponentProps> = ({ assets }) => {
           x: landmark.x,
           y: landmark.y,
         }));
-        setLeftWorking(leftHandCoords.current);
       }
 
       if (rightHandLandmarks) {

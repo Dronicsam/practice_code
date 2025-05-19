@@ -13,8 +13,8 @@ interface TestCheckProps {
 const TestCheck: React.FC<TestCheckProps> = ({ coords, setRegime, assets }) => {
   const handCoords = coords;
   const [asset, setAsset] = useState(0);
-  let gesture = assets[asset].coordinates;
-  let gestureIndexes = assets[asset].landMarkIndexes;
+  const gesture = assets[asset].coordinates;
+  const gestureIndexes = assets[asset].landMarkIndexes;
   console.log(gesture);
 
   console.log(coords);

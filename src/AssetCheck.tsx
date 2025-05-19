@@ -5,9 +5,15 @@ type Coordinate = {
   y: number;
 };
 
+interface Gesture {
+  coordinates: [number, number, number, number][];
+  landMarkIndexes: number[];
+  title: string;
+}
+
 interface AssetCheckProps {
   coords: Coordinate[];
-  assets: any;
+  assets: Gesture[];
   setRegime: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -18,57 +24,47 @@ const AssetCheck: React.FC<AssetCheckProps> = ({
 }) => {
   const handCoords = coords;
   const [asset, setAsset] = useState(0);
-  let gesture = assets[asset].coordinates;
-  let gestureIndexes = assets[asset].landMarkIndexes;
-  console.log(gesture);
 
+  const gesture = assets[asset].coordinates;
+  const gestureIndexes = assets[asset].landMarkIndexes;
+
+  console.log(gesture);
   console.log(coords);
-  if (assets[asset].title == "Я") {
+
+  if (assets[asset].title === "Я") {
     setRegime("");
   }
+
   if (
     gesture &&
-    handCoords != undefined &&
+    handCoords.length > 0 &&
     gestureIndexes &&
-    handCoords.length > 0
+    gestureIndexes.length >= 5
   ) {
-    if (
-      handCoords[gestureIndexes[0]]["x"] <= gesture[0][1] &&
-      gesture[0][0] <= handCoords[gestureIndexes[0]]["x"] &&
-      handCoords[gestureIndexes[0]]["y"] <= gesture[0][3] &&
-      gesture[0][2] <= handCoords[gestureIndexes[0]]["y"] &&
-      handCoords[gestureIndexes[1]]["x"] <= gesture[1][1] &&
-      gesture[1][0] <= handCoords[gestureIndexes[1]]["x"] &&
-      handCoords[gestureIndexes[1]]["y"] <= gesture[1][3] &&
-      gesture[1][2] <= handCoords[gestureIndexes[1]]["y"] &&
-      handCoords[gestureIndexes[2]]["x"] <= gesture[2][1] &&
-      gesture[2][0] <= handCoords[gestureIndexes[2]]["x"] &&
-      handCoords[gestureIndexes[2]]["y"] <= gesture[2][3] &&
-      gesture[2][2] <= handCoords[gestureIndexes[2]]["y"] &&
-      handCoords[gestureIndexes[3]]["x"] <= gesture[3][1] &&
-      gesture[3][0] <= handCoords[gestureIndexes[3]]["x"] &&
-      handCoords[gestureIndexes[3]]["y"] <= gesture[3][3] &&
-      gesture[3][2] <= handCoords[gestureIndexes[3]]["y"] &&
-      handCoords[gestureIndexes[4]]["x"] <= gesture[4][1] &&
-      gesture[4][0] <= handCoords[gestureIndexes[4]]["x"] &&
-      handCoords[gestureIndexes[4]]["y"] <= gesture[4][3] &&
-      gesture[4][2] <= handCoords[gestureIndexes[4]]["y"]
-    ) {
+    const matches = [0, 1, 2, 3, 4].every((i) => {
+      const point = handCoords[gestureIndexes[i]];
+      const [x1, x2, y1, y2] = gesture[i];
+      return point.x <= x2 && x1 <= point.x && point.y <= y2 && y1 <= point.y;
+    });
+
+    if (matches) {
       console.log("SUCCESS");
       setTimeout(() => {
-        setAsset(asset + 1);
+        setAsset((prev) => prev + 1);
       }, 2000);
     }
   }
 
+  const currentAsset = assets[asset];
+
   return (
     <div>
       <img
-        src={"../public/assets/" + assets[asset].title + ".png"}
+        src={`../public/assets/${currentAsset.title}.png`}
         className="asset"
-        alt={assets[asset].title}
+        alt={currentAsset.title}
       />
-      <p>{assets[asset].title}</p>
+      <p>{currentAsset.title}</p>
     </div>
   );
 };
