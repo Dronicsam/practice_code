@@ -1,0 +1,19 @@
+@import "tailwindcss";
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.webcam {
+visibility:hidden;
+max-width: 0px;
+}
+
+.canvas {
+  width:720px;
+  height:480px;
+  -o-transform: scale(-1, -1);
+  -webkit-transform: scale(-1, -1);
+  transform: scale(-1, 1);
+}
