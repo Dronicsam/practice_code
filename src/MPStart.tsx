@@ -162,39 +162,34 @@ const MPStart: React.FC<MyComponentProps> = ({ assets }) => {
 
   return (
     <div className="vidwin">
-      <div>
+      <div className="canvas-wrapper">
         <canvas className="canvas" ref={canvasRef}></canvas>
-        <Webcam className="webcam" audio={false} mirrored ref={webcamRef} />
-      </div>
 
-      {regime === "" && (
-        <div className="options">
-          <Button props={"Обучение"} />
-          <Button props={"Тестирование"} />
-        </div>
-      )}
+        {regime === "" && (
+          <div className="options-overlay">
+            <Button props={"Обучение"} />
+            <Button props={"Тестирование"} />
+          </div>
+        )}
 
-      {regime === "Обучение" && (
-        <div className="assetCheck">
+        {regime === "Обучение" && (
           <AssetCheck
             assets={assets}
             coords={rightWorking}
             setRegime={setRegime}
           />
-          <p>Обучение</p>
-        </div>
-      )}
+        )}
 
-      {regime === "Тестирование" && (
-        <div className="assetCheck">
+        {regime === "Тестирование" && (
           <TestCheck
             assets={assets}
             coords={rightWorking}
             setRegime={setRegime}
           />
-          <p>Тестирование</p>
-        </div>
-      )}
+        )}
+      </div>
+
+      <Webcam className="webcam" audio={false} mirrored ref={webcamRef} />
     </div>
   );
 };

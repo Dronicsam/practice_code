@@ -16,4 +16,7 @@
   -o-transform: scale(-1, -1);
   -webkit-transform: scale(-1, -1);
   transform: scale(-1, 1);
+  border: 3px solid #646cff;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
