@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+# README
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Проект: Создание игр с захватом движений с помощью MediaPipe на React.ts
 
-Currently, two official plugins are available:
+### Студент
+Андрей Ремович Самохвалов  
+Группа: БПИ 2302  
+МТУСИ
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Описание
+Данный проект посвящен разработке игр, использующих технологии захвата движений с помощью библиотеки MediaPipe в среде React с использованием TypeScript. 
 
-## Expanding the ESLint configuration
+### Цели проекта
+- Изучение возможностей библиотеки MediaPipe для захвата движений.
+- Реализация интерактивных игр с использованием захваченных данных.
+- Разработка пользовательского интерфейса на React с использованием TypeScript.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Технологии
+- React
+- TypeScript
+- MediaPipe
+- HTML/CSS
 
-- Configure the top-level `parserOptions` property like this:
+### Установка
+1. Клонировать репозиторий:
+   ```bash
+   git clone https://github.com/Dronicsam/practice_code.git
+   ```
+2. Перейти в директорию проекта:
+   ```bash
+   cd practice_code
+   ```
+3. Установить зависимости:
+   ```bash
+   npm/yarn install
+   ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Запуск проекта
+Для запуска проекта используйте команду:
+```bash
+npm/yarn start
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Лицензия
+Данный проект лицензирован под MIT License. 
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Контакты
+Для вопросов и предложений, пожалуйста, свяжитесь со мной по электронной почте: [dronicsam@gmail.com]
